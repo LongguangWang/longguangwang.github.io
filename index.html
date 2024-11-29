@@ -182,15 +182,16 @@
 				  cursor: pointer;
 				  background-color: #f4f4f4;
 				  color: black;
-				  width: 300px;
+				  width: 230px;
 				  height: 55px;
 				  border: 1.5px solid #000000;
 				  border-radius: 10px;
-				  font-size: 15px;
-				  margin: 8px;
+				  font-size: 14px;
+				  margin: 5px;
 				  opacity: 0.6;
 				  font-weight:bold;
 				}
+				
 				 
 				/* Style the content */
 				.tabcontent {
@@ -208,22 +209,23 @@
 				.active {
 				  color: white; /* Red */
 				  background-color: #2a2a2a;
-				  font-size: 17px;
+				  font-size: 15.5px;
 			}
 			</style>  
 			
 			
 			<div class="tabs">
-			  <button class="tab" onclick="openTab(event, 'tab1')">Image<br>Restoration & Enhancement</button>
-			  <button class="tab" onclick="openTab(event, 'tab2')">Image<br>Generation & Editing</button>
-			  <button class="tab" onclick="openTab(event, 'tab3')">3D Content<br>Restoration & Enhancement</button>
-			  <br><button class="tab" onclick="openTab(event, 'tab4')">3D Content<br>Generation & Editing</button>
-			  <button class="tab" onclick="openTab(event, 'tab5')">Model<br>Compression & Acceleration</button>
-			  <button class="tab" onclick="openTab(event, 'tab6')">Image & 3D Content<br>Understanding</button>
+			  <button class="tab" onclick="openTab(event, 'tab1')">Visual Content<br>Restoration & Enhancement</button>			  
+			  <button class="tab" onclick="openTab(event, 'tab2')">Visual Content<br>Generation & Editing</button>			  	  
+			  <button class="tab" onclick="openTab(event, 'tab3')">Visual Content<br>Understanding</button>
+			  <button class="tab" onclick="openTab(event, 'tab4')">Model<br>Compression & Acceleration</button><br>
+			  <button style="height:20px; display: none;"class="tab" onclick="openTab(event, 'tab5')">Image</button>
+			  <button style="height:20px; display: none;"class="tab" onclick="openTab(event, 'tab6')">3D Content</button>
+			  <button style="height:20px; margin-left:250px; display: none;"class="tab" onclick="openTab(event, 'tab7')">Image</button>
+			  <button style="height:20px; margin-left:250px; display: none;"class="tab" onclick="openTab(event, 'tab8')">3D Content</button>
 			</div>
 			 
-			<div id="tab1" class="tabcontent">
-			
+			<div id="tab5" class="tabcontent">			
 			  <!-- Image Restoration & Enhancement -->
 			  <!-- TPAMI 2024 -->
 				  <table style="width:100%;border:0px;border-spacing:20px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-bottom:-65px;">
@@ -748,7 +750,7 @@
 		</table><br>
 			</div>
 			 
-			<div id="tab2" class="tabcontent">
+			<div id="tab7" class="tabcontent">
 			  <!-- Image Generation & Editing-->
 			  <!-- Arxiv 2024 -->
 				  <table style="width:100%;border:0px;border-spacing:20px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-bottom:-65px;">
@@ -777,7 +779,7 @@
 				</table><br>
 			</div>
 			 
-			<div id="tab3" class="tabcontent">
+			<div id="tab6" class="tabcontent">
 			  <!-- 3D Content Restoration & Enhancement-->
 			  <!-- TPAMI 2024 -->
 				  <table style="width:100%;border:0px;border-spacing:20px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-bottom:-65px;">
@@ -877,7 +879,7 @@
 			  
 			</div>
 			
-			<div id="tab4" class="tabcontent">
+			<div id="tab8" class="tabcontent">
 			  <!--3D Content Generation & Editing -->
 			  <!-- ECCV 2024 -->
 			  <table style="width:100%;border:0px;border-spacing:20px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-bottom:-65px;">
@@ -962,7 +964,7 @@
 			  
 			</div>
 			
-			<div id="tab5" class="tabcontent">
+			<div id="tab3" class="tabcontent">
 			<!-- Model Compression & Acceleration-->
 			  <!-- ICLR 2024 -->
 			  <table style="width:100%;border:0px;border-spacing:20px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-bottom:-65px;">
@@ -1089,7 +1091,7 @@
 		
 			</div>
 			
-			<div id="tab6" class="tabcontent">
+			<div id="tab4" class="tabcontent">
 			  <!-- Misc -->			  
 			  <!-- ECCV 2024 -->
 			  <table style="width:100%;border:0px;border-spacing:20px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-bottom:-65px;">
@@ -1379,15 +1381,45 @@
 			function openTab(evt, tabName) {
 			  var i, tabcontent, tablinks;
 			  tabcontent = document.getElementsByClassName("tabcontent");
+			  tablinks = document.getElementsByClassName("tab");
+			  if (tabName == 'tab1' || tabName == 'tab2' || tabName == 'tab3' || tabName ==  'tab4'){
+			  tablinks[4].style.display = "none";
+			  tablinks[5].style.display = "none";
+			  tablinks[6].style.display = "none";
+			  tablinks[7].style.display = "none";
+			  
 			  for (i = 0; i < tabcontent.length; i++) {
 				tabcontent[i].style.display = "none";
-			  }
-			  tablinks = document.getElementsByClassName("tab");
+			  }		
 			  for (i = 0; i < tablinks.length; i++) {
 				tablinks[i].className = tablinks[i].className.replace(" active", "");
 			  }
+			  
+			  if (tabName == "tab1") {
+				evt.currentTarget.className += " active";
+				tablinks[4].style.display = "block";
+				tablinks[5].style.display = "block";
+			  } 
+			  if (tabName == "tab2") {
+				evt.currentTarget.className += " active";
+				tablinks[6].style.display = "block";
+				tablinks[7].style.display = "block";
+			  }
 			  document.getElementById(tabName).style.display = "block";
 			  evt.currentTarget.className += " active";
+			  }
+			  else{
+			  for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			  }	
+			  tablinks[4].className = tablinks[4].className.replace(" active", "");
+			  tablinks[5].className = tablinks[5].className.replace(" active", "");
+			  tablinks[6].className = tablinks[6].className.replace(" active", "");
+			  tablinks[7].className = tablinks[7].className.replace(" active", "");
+			  document.getElementById(tabName).style.display = "block";
+			  evt.currentTarget.className += " active";
+
+			  }
 			}
 			</script>
 		
@@ -1408,25 +1440,7 @@
 		  
 		 
 		 
-		
-		
-		
-		 
-		 
-		 
-		 
-		 
-		
-		
-		 
-		 
-		 
-		 
-		 
-		 
-		
-		
-		 
+
 		
 
 		
